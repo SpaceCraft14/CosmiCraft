@@ -68,6 +68,18 @@ namespace Content.Shared.Storage
         public EntityWhitelist? Blacklist;
 
         /// <summary>
+        /// Maximum capacity for storage.
+        /// </summary>
+        [DataField("capacity"), AutoNetworkedField]
+        public int StorageCapacityMax = 10000;
+
+        /// <summary>
+        /// How much storage is currently being used by contained entities.
+        /// </summary>
+        [ViewVariables, DataField("storageUsed"), AutoNetworkedField]
+        public int StorageUsed;
+
+        /// <summary>
         /// Sound played whenever an entity is inserted into storage.
         /// </summary>
         [DataField("storageInsertSound")]

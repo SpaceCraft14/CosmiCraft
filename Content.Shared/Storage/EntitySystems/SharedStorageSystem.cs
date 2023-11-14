@@ -26,20 +26,20 @@ namespace Content.Shared.Storage.EntitySystems;
 public abstract class SharedStorageSystem : EntitySystem
 {
     [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] private   readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private   readonly EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] protected readonly SharedEntityStorageSystem EntityStorage = default!;
-    [Dependency] private   readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private   readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private   readonly SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private   readonly SharedInteractionSystem _sharedInteractionSystem = default!;
-    [Dependency] private   readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private   readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _sharedInteractionSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] private   readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] protected   readonly SharedTransformSystem _transform = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+    [Dependency] protected readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -101,7 +101,7 @@ public abstract class SharedStorageSystem : EntitySystem
         Dirty(uid, component);
     }
 
-    public virtual void UpdateUI(EntityUid uid, StorageComponent component) {}
+    public virtual void UpdateUI(EntityUid uid, StorageComponent component) { }
 
     public virtual void OpenStorageUI(EntityUid uid, EntityUid entity, StorageComponent? storageComp = null, bool silent = false) { }
 
@@ -399,6 +399,17 @@ public abstract class SharedStorageSystem : EntitySystem
 
     public void RecalculateStorageUsed(EntityUid uid, StorageComponent storageComp)
     {
+        storageComp.StorageUsed = 0;
+
+        foreach (var entity in storageComp.Container.ContainedEntities)
+        {
+            if (!_itemQuery.TryGetComponent(entity, out var itemComp))
+                continue;
+
+            var size = (int) itemComp.Size;
+            storageComp.StorageUsed += size;
+        }
+
         if (storageComp.MaxSlots == null)
         {
             _appearance.SetData(uid, StorageVisuals.StorageUsed, GetCumulativeItemSizes(uid, storageComp));
@@ -409,6 +420,14 @@ public abstract class SharedStorageSystem : EntitySystem
             _appearance.SetData(uid, StorageVisuals.StorageUsed, storageComp.Container.ContainedEntities.Count);
             _appearance.SetData(uid, StorageVisuals.Capacity, storageComp.MaxSlots.Value);
         }
+    }
+
+    public int GetAvailableSpace(EntityUid uid, StorageComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return 0;
+
+        return component.StorageCapacityMax - component.StorageUsed;
     }
 
     /// <summary>
