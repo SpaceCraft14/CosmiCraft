@@ -623,10 +623,10 @@
     prototypes: [ BoxingKangarooGear ]
 
 - type: entity
-  name: Smile
+  name: Лайм
   id: MobSlimesPet
   parent: MobAdultSlimes
-  description: This masterpiece has gone through thousands of experiments. But it is the sweetest creature in the world. Smile Slime!
+  description: Эта милашка прошла через тысячи экспериментов. Но он всё ещё самое милое существо на свете. Улыбайся, Лайм!
   components:
   - type: Sprite
     layers:
