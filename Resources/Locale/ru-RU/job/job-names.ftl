@@ -89,3 +89,7 @@ JobTechnicalAssistant = технический ассистент
 JobWarden = смотритель
 JobBoxer = боксёр
 JobZookeeper = зоотехник
+JobSeniorEngineer = старший Инженер
+JobSeniorOfficer = инструктор
+JobSeniorPhysician = старший врач
+JobSeniorResearcher = старший научный сотрудник
