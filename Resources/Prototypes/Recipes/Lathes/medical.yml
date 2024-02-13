@@ -65,6 +65,22 @@
     Plastic: 25
 
 - type: latheRecipe
+  id: AdvancedBrutepack
+  result: BrutepackAdvanced1
+  completetime: 2
+  materials:
+    Steel: 50
+    Plastic: 50
+
+- type: latheRecipe
+  id: AdvancedOintment
+  result: OintmentAdvanced1
+  completetime: 2
+    materials:
+    Glass: 50
+    Plastic: 50
+
+- type: latheRecipe
   id: HandheldCrewMonitor
   result: HandheldCrewMonitorEmpty
   completetime: 2
@@ -235,19 +251,3 @@
   materials:
     Steel: 600
     Plastic: 300
-
-- type: latheRecipe
-  id: AdvancedBrutepack
-  result: BrutepackAdvanced1
-  completetime: 2
-  materials:
-    Steel: 50
-    Plastic: 50
-
-- type: latheRecipe
-  id: AdvancedOintment
-  result: OintmentAdvanced1
-  completetime: 2
-    materials:
-    Glass: 50
-    Plastic: 50
