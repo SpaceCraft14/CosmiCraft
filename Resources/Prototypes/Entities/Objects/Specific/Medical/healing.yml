@@ -3,6 +3,7 @@
   id: BaseHealingItem
   abstract: true
   components:
+  - type: Material
   - type: Sprite
     sprite: Objects/Specific/Medical/medical.rsi
   - type: Item

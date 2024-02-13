@@ -236,3 +236,16 @@
     Steel: 600
     Plastic: 300
 
+- type: latheRecipe
+  id: AdvancedBrutepack
+  result: BrutepackAdvanced1
+  completetime: 2
+  materials:
+    Brutepack: 2
+
+- type: latheRecipe
+  id: AdvancedOintment
+  result: OintmentAdvanced1
+  completetime: 2
+  materials:
+    Ointment: 2

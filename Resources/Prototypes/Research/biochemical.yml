@@ -131,6 +131,19 @@
   - BluespaceBeaker
   - SyringeBluespace
 
+- type: technology
+  id: AdvancedMedicine
+  name: research-technology-advanced-medicine
+  icon:
+    sprite: Objects/Specific/Medical/firstaidkits.rsi
+    state: advkit
+  discipline: Biochemical
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - AdvancedOintment
+  - AdvancedBrutepack
+
 # look into revisiting this later once medical isn't a hellhole
 #- type: technology
 #  id: Cloning

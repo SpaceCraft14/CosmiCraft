@@ -696,6 +696,8 @@
       - BluespaceBeaker
       - SyringeBluespace
       - Jug
+      - AdvancedOintment
+      - AdvancedBrutepack
   - type: Machine
     board: MedicalTechFabCircuitboard
 
